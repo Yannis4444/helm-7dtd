@@ -1,6 +1,6 @@
 ---
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ template "7dtd.fullname" . }}
   labels:
@@ -9,7 +9,8 @@ metadata:
     release: {{ .Release.Name }}
     heritage: {{ .Release.Service }}
 spec:
-  replicas: {{ .Values.deployment.replicas | default 1 }}
+  serviceName: {{ template "7dtd.fullname" . }}
+  replicas: 1
   selector:
     matchLabels:
       app: {{ template "7dtd.name" . }}
@@ -29,7 +30,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            {{- tpl (.Values.deployment.env) $ | nindent 10 }}
+            {{- tpl (.Values.statefulset.env) $ | nindent 10 }}
           {{- if .Values.livenessProbe }}
           livenessProbe:
             tcpSocket:

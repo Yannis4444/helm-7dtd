@@ -48,7 +48,7 @@ helm install 7daystodie . -f values.yaml --namespace 7days --create-namespace
 
 ## Uninstallation
 
-To uninstall/delete the `my-release` deployment:
+To uninstall/delete the `my-release` statefulset:
 
 ```bash
 helm delete my-release
@@ -64,9 +64,8 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | `image.repository`                 | 7dtd Image name                                                                                                                                                                              | `vinanrra/7dtd-server`                               |
 | `image.tag`                        | 7dtd Image tag                                                                                                                                                                               | `v0.4.4`                                             |
 | `image.pullPolicy`                 | 7dtd Image pull policy                                                                                                                                                                       | `IfNotPresent`                                       |
-| **Deployment**                     |
-| `deployment.replicas`              | Number of replicas                                                                                                                                                                           | `1`                                                  |
-| `deployment.env`                   | Additional environment as described in the [underlying Docker](https://github.com/vinanrra/Docker-7DaysToDie/blob/69e5b0ae5e8a3ccff74eed23ee8b54bd6d286e5c/docs/parameters.md#7-days-to-die) | Check the `values.yaml` file for the default values. |
+| **StatefulSet**                    |
+| `statefulset.env`                  | Additional environment as described in the [underlying Docker](https://github.com/vinanrra/Docker-7DaysToDie/blob/69e5b0ae5e8a3ccff74eed23ee8b54bd6d286e5c/docs/parameters.md#7-days-to-die) | Check the `values.yaml` file for the default values. |
 | **Service**                        |
 | `service.type`                     | Type of service for 7dtd frontend                                                                                                                                                            | `NodePort`                                           |
 | `service.clusterIP`                | internal cluster service IP (set to "-" to pass an empty value)                                                                                                                              | `nil`                                                |

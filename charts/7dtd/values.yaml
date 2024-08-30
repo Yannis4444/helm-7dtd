@@ -7,11 +7,10 @@ image:
 
 imagePullSecrets: []
 
-## Configure the deployment resource 
+## Configure the statefulset resource
 ##
-deployment:
-  replicas: 1
-  env: |
+statefulset:
+  env:
     - name: START_MODE
       value: "1"
     - name: VERSION
