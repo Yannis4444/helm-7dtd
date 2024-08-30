@@ -62,7 +62,7 @@ The following table lists the configurable parameters of the swagger-ui chart an
 |------------------------------------|---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|------------------------------------------------------|
 | **Image**                          |
 | `image.repository`                 | 7dtd Image name                                                                                                                                                                             | `vinanrra/7dtd-server`                               |
-| `image.tag`                        | 7dtd Image tag                                                                                                                                                                              | `v0.4.4`                                             |
+| `image.tag`                        | 7dtd Image tag                                                                                                                                                                              | Optional to overwrite the image version              |
 | `image.pullPolicy`                 | 7dtd Image pull policy                                                                                                                                                                      | `IfNotPresent`                                       |
 | **Environment**                    |
 | `env`                              | Environment variables as described in the [underlying Docker](https://github.com/vinanrra/Docker-7DaysToDie/blob/69e5b0ae5e8a3ccff74eed23ee8b54bd6d286e5c/docs/parameters.md#7-days-to-die) | Check the `values.yaml` file for the default values. |
@@ -79,9 +79,9 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | `ingress.hosts`                    | Ingress hosts                                                                                                                                                                               | `[]`                                                 |
 | `ingress.tls`                      | Ingress TLS configuration                                                                                                                                                                   | `[]`                                                 |
 | **ReadinessProbe**                 |
-| `readinessProbe`                   | Rediness Probe settings                                                                                                                                                                     | `nil`                                                |
+| `readinessProbe`                   | Rediness Probe settings                                                                                                                                                                     | Check the `values.yaml` file for the default values. |
 | **LivenessProbe**                  |
-| `livenessProbe`                    | Liveness Probe settings                                                                                                                                                                     | `nil`                                                |
+| `livenessProbe`                    | Liveness Probe settings                                                                                                                                                                     | Check the `values.yaml` file for the default values. |
 | **Resources**                      |
 | `resources`                        | CPU/Memory resource requests/limits                                                                                                                                                         | `{}`                                                 |
 
