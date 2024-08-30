@@ -55,7 +55,7 @@ spec:
           - name: 7dtd-telnet
             containerPort: 8081
             protocol: TCP
-          - name: 7dtd-htto
+          - name: 7dtd-webserver
             containerPort: 8082
             protocol: TCP
           resources:
