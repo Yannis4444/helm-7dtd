@@ -81,7 +81,7 @@ The following table lists the configurable parameters of the swagger-ui chart an
 | **ReadinessProbe**                 |
 | `readinessProbe`                   | Rediness Probe settings                                                                                                                                                                      | `nil`                                                |
 | **LivenessProbe**                  |
-| `livenessProbe.httpGet.path`       | Liveness Probe settings                                                                                                                                                                      | `nil`                                                |
+| `livenessProbe`                    | Liveness Probe settings                                                                                                                                                                      | `nil`                                                |
 | **Resources**                      |
 | `resources`                        | CPU/Memory resource requests/limits                                                                                                                                                          | `{}`                                                 |
 
