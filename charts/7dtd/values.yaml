@@ -95,20 +95,20 @@ ingress:
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 ##
 readinessProbe:
-  httpGet:
-    path: /
-    port: 7dtd-webadmin
-  initialDelaySeconds: 60
-  periodSeconds: 15
-  timeoutSeconds: 10
+  tcpSocket:
+    port: 7dtd-tcp
+  initialDelaySeconds: 10
+  periodSeconds: 5
+  timeoutSeconds: 5
 
 livenessProbe:
-  httpGet:
-    path: /
-    port: 7dtd-webadmin
+  tcpSocket:
+    port: 7dtd-tcp
   initialDelaySeconds: 60
   periodSeconds: 30
-  timeoutSeconds: 10
+  timeoutSeconds: 5
+  successThreshold: 1
+  failureThreshold: 3
 
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/
