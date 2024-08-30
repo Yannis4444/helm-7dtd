@@ -140,7 +140,7 @@ persistence:
     size: 64Mi
 
   serverFiles:
-    enabled: false
+    enabled: true
     storageClass: standard
     mountPath: /home/sdtdserver/serverfiles/
     size: 16Gi
