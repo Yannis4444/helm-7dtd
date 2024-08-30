@@ -31,8 +31,8 @@ spec:
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
             {{- tpl (.Values.env) $ | nindent 10 }}
-          readinessProbe: {{- toYaml .Values.readinessProbe | nindent 10 }}
-          livenessProbe: {{- toYaml .Values.livenessProbe | nindent 10 }}
+          readinessProbe: {{- toYaml .Values.readinessProbe | nindent 12 }}
+          livenessProbe: {{- toYaml .Values.livenessProbe | nindent 12 }}
           ports:
           - name: 7dtd-tcp
             containerPort: 26900
