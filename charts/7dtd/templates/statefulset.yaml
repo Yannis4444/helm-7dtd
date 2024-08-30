@@ -30,7 +30,9 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            {{- tpl (.Values.env) $ | nindent 10 }}
+            {{- with .Values.env }}
+            {{- toYaml . | nindent 12 }}
+            {{- end }}
           readinessProbe: {{- toYaml .Values.readinessProbe | nindent 12 }}
           livenessProbe: {{- toYaml .Values.livenessProbe | nindent 12 }}
           ports:
@@ -58,22 +60,49 @@ spec:
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
-            - name: {{ template "7dtd.fullname" . }}-pvc
-              mountPath: /home/sdtdserver/.local/share/7DaysToDie
-              subPath: saves
-            - name: {{ template "7dtd.fullname" . }}-pvc
-              mountPath: /home/sdtdserver/lgsm/config-lgsm/sdtdserver
-              subPath: lgsm-config
-            - name: {{ template "7dtd.fullname" . }}-pvc
-              mountPath: /home/sdtdserver/serverfiles
-              subPath: serverfiles
-            - name: {{ template "7dtd.fullname" . }}-pvc
-              mountPath: /home/sdtdserver/log
-              subPath: logs
-            - name: {{ template "7dtd.fullname" . }}-pvc
-              mountPath: /home/sdtdserver/lgsm/backup
-              subPath: backups
+            {{- if .Values.persistence.worldSaves.enabled }}
+            - name: world-saves
+              mountPath: {{ .Values.persistence.worldSaves.mountPath }}
+            {{- end }}
+            {{- if .Values.persistence.lgsmConfig.enabled }}
+            - name: lgsm-config
+              mountPath: {{ .Values.persistence.lgsmConfig.mountPath }}
+            {{- end }}
+            {{- if .Values.persistence.serverFiles.enabled }}
+            - name: server-files
+              mountPath: {{ .Values.persistence.serverFiles.mountPath }}
+            {{- end }}
+            {{- if .Values.persistence.logs.enabled }}
+            - name: logs
+              mountPath: {{ .Values.persistence.logs.mountPath }}
+            {{- end }}
+            {{- if .Values.persistence.backups.enabled }}
+            - name: backups
+              mountPath: {{ .Values.persistence.backups.mountPath }}
+            {{- end }}
       volumes:
-        - name: {{ template "7dtd.fullname" . }}-pvc
+        {{- if .Values.persistence.worldSaves.enabled }}
+        - name: world-saves
           persistentVolumeClaim:
-            claimName: {{ template "7dtd.fullname" . }}-pvc
+            claimName: {{ template "7dtd.fullname" . }}-world-saves
+        {{- end }}
+        {{- if .Values.persistence.lgsmConfig.enabled }}
+        - name: lgsm-config
+          persistentVolumeClaim:
+            claimName: {{ template "7dtd.fullname" . }}-lgsm-config
+        {{- end }}
+        {{- if .Values.persistence.serverFiles.enabled }}
+        - name: server-files
+          persistentVolumeClaim:
+            claimName: {{ template "7dtd.fullname" . }}-server-files
+        {{- end }}
+        {{- if .Values.persistence.logs.enabled }}
+        - name: logs
+          persistentVolumeClaim:
+            claimName: {{ template "7dtd.fullname" . }}-logs
+        {{- end }}
+        {{- if .Values.persistence.backups.enabled }}
+        - name: backups
+          persistentVolumeClaim:
+            claimName: {{ template "7dtd.fullname" . }}-backups
+        {{- end }}

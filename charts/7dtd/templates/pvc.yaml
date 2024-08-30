@@ -1,11 +1,69 @@
+{{- if .Values.persistence.worldSaves.enabled }}
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: {{ template "7dtd.fullname" . }}-pvc
+  name: {{ template "7dtd.fullname" . }}-world-saves
 spec:
   accessModes:
-    - {{ .Values.persistence.accessMode }}
+    - ReadWriteOnce
   resources:
     requests:
-      storage: {{ .Values.persistence.size }}
+      storage: {{ .Values.persistence.worldSaves.size }}
   storageClassName: {{ .Values.persistence.storageClass }}
+{{- end }}
+
+{{- if .Values.persistence.lgsmConfig.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "7dtd.fullname" . }}-lgsm-config
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.persistence.lgsmConfig.size }}
+  storageClassName: {{ .Values.persistence.storageClass }}
+{{- end }}
+
+{{- if .Values.persistence.serverFiles.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "7dtd.fullname" . }}-server-files
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.persistence.serverFiles.size }}
+  storageClassName: {{ .Values.persistence.storageClass }}
+{{- end }}
+
+{{- if .Values.persistence.logs.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "7dtd.fullname" . }}-logs
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.persistence.logs.size }}
+  storageClassName: {{ .Values.persistence.storageClass }}
+{{- end }}
+
+{{- if .Values.persistence.backups.enabled }}
+apiVersion: v1
+kind: PersistentVolumeClaim
+metadata:
+  name: {{ template "7dtd.fullname" . }}-backups
+spec:
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: {{ .Values.persistence.backups.size }}
+  storageClassName: {{ .Values.persistence.storageClass }}
+{{- end }}

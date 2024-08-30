@@ -8,7 +8,7 @@ image:
 imagePullSecrets: []
 
 ## Configure the environment variables
-env: |
+env:
   - name: START_MODE
     value: "1"
   - name: VERSION
@@ -127,7 +127,32 @@ resources: {}
 
 ## Configure persistent volume claim
 persistence:
-  enabled: true
-  storageClass: standard
-  accessMode: ReadWriteOnce
-  size: 10Gi
+  worldSaves:
+    enabled: true
+    storageClass: standard
+    mountPath: /home/sdtdserver/.local/share/7DaysToDie/
+    size: 4Gi
+
+  lgsmConfig:
+    enabled: true
+    storageClass: standard
+    mountPath: /home/sdtdserver/lgsm/config-lgsm/sdtdserver
+    size: 64Mi
+
+  serverFiles:
+    enabled: false
+    storageClass: standard
+    mountPath: /home/sdtdserver/serverfiles/
+    size: 16Gi
+
+  logs:
+    enabled: false
+    storageClass: standard
+    mountPath: /home/sdtdserver/log/
+    size: 4Gi
+
+  backups:
+    enabled: false
+    storageClass: standard
+    mountPath: /home/sdtdserver/lgsm/backup/
+    size: 16Gi
