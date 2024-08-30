@@ -29,7 +29,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            {{- tpl (.Values.deployment.extraEnv) $ | nindent 10 }}
+            {{- tpl (.Values.deployment.env) $ | nindent 10 }}
           {{- if .Values.livenessProbe }}
           livenessProbe:
             tcpSocket:

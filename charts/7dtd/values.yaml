@@ -12,41 +12,39 @@ imagePullSecrets: []
 ##
 deployment:
   replicas: 1
-  extraEnv: |
+  env: |
     - name: START_MODE
       value: "1"
-    - name: TimeZone
-      value: "America/New_York"
+    - name: VERSION
+      value: "stable"
     - name: PUID
       value: "1000"
     - name: PGID
       value: "1000"
-    - name: VERSION
-      value: "stable"
+    - name: TimeZone
+      value: "Europe/Madrid"
     - name: TEST_ALERT
       value: "NO"
     - name: UPDATE_MODS
-      value: "YESX"
+      value: "NO"
+    - name: MODS_URLS
+      value: "" 
     - name: ALLOC_FIXES
-      value: "YES"
+      value: "NO"
     - name: ALLOC_FIXES_UPDATE
-      value: "YES"
+      value: "NO"
     - name: UNDEAD_LEGACY
       value: "NO"
     - name: UNDEAD_LEGACY_VERSION
       value: "stable"
     - name: UNDEAD_LEGACY_UPDATE
       value: "NO"
-    - name: ENZOMBIES
+    - name: DARKNESS_FALLS
       value: "NO"
-    - name: ENZOMBIES_ADDON_SNUFKIN
+    - name: DARKNESS_FALLS_UPDATE
       value: "NO"
-    - name: ENZOMBIES_ADDON_ROBELOTO
-      value: "NO"
-    - name: ENZOMBIES_ADDON_NONUDES
-      value: "NO"
-    - name: ENZOMBIES_UPDATE
-      value: "NO"
+    - name: DARKNESS_FALLS_URL
+      value: "False"
     - name: CPM
       value: "NO"
     - name: CPM_UPDATE
@@ -56,10 +54,14 @@ deployment:
     - name: BEPINEX_UPDATE
       value: "NO"
     - name: BACKUP
-      value: "YES"
+      value: "NO"
+    - name: BACKUP_HOUR
+      value: "5"
+    - name: BACKUP_MAX
+      value: "7"
     - name: MONITOR
-      value: "YES"
-    
+      value: "NO"
+
 ## Expose the 7dtd service and
 ## Provides options for the service so chart users have the full choice
 ## Set the service type and the port to serve it.
