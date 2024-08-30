@@ -8,7 +8,7 @@ image:
 imagePullSecrets: []
 
 ## Configure the environment variables
-env:
+env: |
   - name: START_MODE
     value: "1"
   - name: VERSION
