@@ -30,7 +30,7 @@ spec:
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
           env:
-            {{- tpl (.Values.statefulset.env) $ | nindent 10 }}
+            {{- tpl (.Values.env) $ | nindent 10 }}
           readinessProbe: {{- toYaml .Values.readinessProbe | nindent 10 }}
           livenessProbe: {{- toYaml .Values.livenessProbe | nindent 10 }}
           ports:

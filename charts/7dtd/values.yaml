@@ -7,58 +7,56 @@ image:
 
 imagePullSecrets: []
 
-## Configure the statefulset resource
-##
-statefulset:
-  env:
-    - name: START_MODE
-      value: "1"
-    - name: VERSION
-      value: "stable"
-    - name: PUID
-      value: "1000"
-    - name: PGID
-      value: "1000"
-    - name: TimeZone
-      value: "Europe/Madrid"
-    - name: TEST_ALERT
-      value: "NO"
-    - name: UPDATE_MODS
-      value: "NO"
-    - name: MODS_URLS
-      value: "" 
-    - name: ALLOC_FIXES
-      value: "NO"
-    - name: ALLOC_FIXES_UPDATE
-      value: "NO"
-    - name: UNDEAD_LEGACY
-      value: "NO"
-    - name: UNDEAD_LEGACY_VERSION
-      value: "stable"
-    - name: UNDEAD_LEGACY_UPDATE
-      value: "NO"
-    - name: DARKNESS_FALLS
-      value: "NO"
-    - name: DARKNESS_FALLS_UPDATE
-      value: "NO"
-    - name: DARKNESS_FALLS_URL
-      value: "False"
-    - name: CPM
-      value: "NO"
-    - name: CPM_UPDATE
-      value: "NO"
-    - name: BEPINEX
-      value: "NO"
-    - name: BEPINEX_UPDATE
-      value: "NO"
-    - name: BACKUP
-      value: "NO"
-    - name: BACKUP_HOUR
-      value: "5"
-    - name: BACKUP_MAX
-      value: "7"
-    - name: MONITOR
-      value: "NO"
+## Configure the environment variables
+env:
+  - name: START_MODE
+    value: "1"
+  - name: VERSION
+    value: "stable"
+  - name: PUID
+    value: "1000"
+  - name: PGID
+    value: "1000"
+  - name: TimeZone
+    value: "Europe/Madrid"
+  - name: TEST_ALERT
+    value: "NO"
+  - name: UPDATE_MODS
+    value: "NO"
+  - name: MODS_URLS
+    value: ""
+  - name: ALLOC_FIXES
+    value: "NO"
+  - name: ALLOC_FIXES_UPDATE
+    value: "NO"
+  - name: UNDEAD_LEGACY
+    value: "NO"
+  - name: UNDEAD_LEGACY_VERSION
+    value: "stable"
+  - name: UNDEAD_LEGACY_UPDATE
+    value: "NO"
+  - name: DARKNESS_FALLS
+    value: "NO"
+  - name: DARKNESS_FALLS_UPDATE
+    value: "NO"
+  - name: DARKNESS_FALLS_URL
+    value: "False"
+  - name: CPM
+    value: "NO"
+  - name: CPM_UPDATE
+    value: "NO"
+  - name: BEPINEX
+    value: "NO"
+  - name: BEPINEX_UPDATE
+    value: "NO"
+  - name: BACKUP
+    value: "NO"
+  - name: BACKUP_HOUR
+    value: "5"
+  - name: BACKUP_MAX
+    value: "7"
+  - name: MONITOR
+    value: "NO"
 
 ## Expose the 7dtd service and
 ## Provides options for the service so chart users have the full choice
