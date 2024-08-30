@@ -57,3 +57,23 @@ spec:
             protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+          volumeMounts:
+            - name: {{ template "7dtd.fullname" . }}-pvc
+              mountPath: /home/sdtdserver/.local/share/7DaysToDie
+              subPath: saves
+            - name: {{ template "7dtd.fullname" . }}-pvc
+              mountPath: /home/sdtdserver/lgsm/config-lgsm/sdtdserver
+              subPath: lgsm-config
+            - name: {{ template "7dtd.fullname" . }}-pvc
+              mountPath: /home/sdtdserver/serverfiles
+              subPath: serverfiles
+            - name: {{ template "7dtd.fullname" . }}-pvc
+              mountPath: /home/sdtdserver/log
+              subPath: logs
+            - name: {{ template "7dtd.fullname" . }}-pvc
+              mountPath: /home/sdtdserver/lgsm/backup
+              subPath: backups
+      volumes:
+        - name: {{ template "7dtd.fullname" . }}-pvc
+          persistentVolumeClaim:
+            claimName: {{ template "7dtd.fullname" . }}-pvc

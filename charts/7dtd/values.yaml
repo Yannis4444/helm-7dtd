@@ -124,3 +124,10 @@ resources: {}
   # requests:
   #   cpu: 1000m
   #   memory: 1024Mi
+
+## Configure persistent volume claim
+persistence:
+  enabled: true
+  storageClass: standard
+  accessMode: ReadWriteOnce
+  size: 10Gi

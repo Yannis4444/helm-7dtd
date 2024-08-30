@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: server-{{ template "7dtd.fullname" . }}
+  name: {{ template "7dtd.fullname" . }}-server
   labels:
     app: {{ template "7dtd.name" . }}
     chart: {{ template "7dtd.chart" . }}
