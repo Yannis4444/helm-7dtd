@@ -1,4 +1,5 @@
 {{- if .Values.persistence.worldSaves.enabled }}
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -9,10 +10,11 @@ spec:
   resources:
     requests:
       storage: {{ .Values.persistence.worldSaves.size }}
-  storageClassName: {{ .Values.persistence.storageClass }}
+  storageClassName: {{ .Values.persistence.worldSaves.storageClass }}
 {{- end }}
 
 {{- if .Values.persistence.lgsmConfig.enabled }}
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -23,10 +25,11 @@ spec:
   resources:
     requests:
       storage: {{ .Values.persistence.lgsmConfig.size }}
-  storageClassName: {{ .Values.persistence.storageClass }}
+  storageClassName: {{ .Values.persistence.lgsmConfig.storageClass }}
 {{- end }}
 
 {{- if .Values.persistence.serverFiles.enabled }}
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -37,10 +40,11 @@ spec:
   resources:
     requests:
       storage: {{ .Values.persistence.serverFiles.size }}
-  storageClassName: {{ .Values.persistence.storageClass }}
+  storageClassName: {{ .Values.persistence.serverFiles.storageClass }}
 {{- end }}
 
 {{- if .Values.persistence.logs.enabled }}
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -51,10 +55,11 @@ spec:
   resources:
     requests:
       storage: {{ .Values.persistence.logs.size }}
-  storageClassName: {{ .Values.persistence.storageClass }}
+  storageClassName: {{ .Values.persistence.logs.storageClass }}
 {{- end }}
 
 {{- if .Values.persistence.backups.enabled }}
+---
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
@@ -65,5 +70,5 @@ spec:
   resources:
     requests:
       storage: {{ .Values.persistence.backups.size }}
-  storageClassName: {{ .Values.persistence.storageClass }}
+  storageClassName: {{ .Values.persistence.backups.storageClass }}
 {{- end }}
