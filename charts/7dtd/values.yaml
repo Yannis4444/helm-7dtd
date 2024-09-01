@@ -94,21 +94,22 @@ ingress:
 ## Configure liveness and readiness probes
 ## ref: https://kubernetes.io/docs/tasks/configure-pod-container/configure-liveness-readiness-probes/
 ##
-readinessProbe:
-  tcpSocket:
-    port: 7dtd-tcp
-  initialDelaySeconds: 10
-  periodSeconds: 5
-  timeoutSeconds: 5
-
-livenessProbe:
-  tcpSocket:
-    port: 7dtd-tcp
-  initialDelaySeconds: 60
-  periodSeconds: 30
-  timeoutSeconds: 5
-  successThreshold: 1
-  failureThreshold: 3
+## For some reason these break everything... This definitely has not taken me too many hours to figure out!
+#readinessProbe:
+#  tcpSocket:
+#    port: 7dtd-tcp
+#  initialDelaySeconds: 10
+#  periodSeconds: 5
+#  timeoutSeconds: 5
+#
+#livenessProbe:
+#  tcpSocket:
+#    port: 7dtd-tcp
+#  initialDelaySeconds: 60
+#  periodSeconds: 30
+#  timeoutSeconds: 5
+#  successThreshold: 1
+#  failureThreshold: 3
 
 ## Configure resource requests and limits
 ## ref: http://kubernetes.io/docs/user-guide/compute-resources/

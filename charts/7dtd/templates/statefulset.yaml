@@ -33,8 +33,9 @@ spec:
             {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
-          readinessProbe: {{- toYaml .Values.readinessProbe | nindent 12 }}
-          livenessProbe: {{- toYaml .Values.livenessProbe | nindent 12 }}
+          command: ["sh", "-c", "echo 'nobody soft nofile 10240' | tee -a /etc/security/limits.conf; exec /home/sdtdserver/user.sh"]
+          securityContext:
+            privileged: true
           ports:
           - name: 7dtd-tcp
             containerPort: 26900
