@@ -41,7 +41,7 @@ spec:
     - name: 7dtd-udp3
       port: 26902
       protocol: UDP
-      targetPort: 7dtd-udp2
+      targetPort: 7dtd-udp3
     - name: 7dtd-webadmin
       port: 8080
       protocol: TCP
