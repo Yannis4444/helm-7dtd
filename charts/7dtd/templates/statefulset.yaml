@@ -33,31 +33,31 @@ spec:
             {{- with .Values.env }}
             {{- toYaml . | nindent 12 }}
             {{- end }}
-          command: ["sh", "-c", "echo 'nobody soft nofile 10240' | tee -a /etc/security/limits.conf; exec /home/sdtdserver/user.sh"]
+          command: [ "sh", "-c", "echo 'nobody soft nofile 10240' | tee -a /etc/security/limits.conf; exec /home/sdtdserver/user.sh" ]
           securityContext:
             privileged: true
           ports:
-          - name: 7dtd-tcp
-            containerPort: 26900
-            protocol: TCP
-          - name: 7dtd-udp
-            containerPort: 26900
-            protocol: UDP
-          - name: 7dtd-udp2
-            containerPort: 26901
-            protocol: UDP
-          - name: 7dtd-udp3
-            containerPort: 26902
-            protocol: UDP
-          - name: 7dtd-webadmin
-            containerPort: 8080
-            protocol: TCP
-          - name: 7dtd-telnet
-            containerPort: 8081
-            protocol: TCP
-          - name: 7dtd-http
-            containerPort: 8082
-            protocol: TCP
+            - name: 7dtd-tcp
+              containerPort: 26900
+              protocol: TCP
+            - name: 7dtd-udp
+              containerPort: 26900
+              protocol: UDP
+            - name: 7dtd-udp2
+              containerPort: 26901
+              protocol: UDP
+            - name: 7dtd-udp3
+              containerPort: 26902
+              protocol: UDP
+            - name: 7dtd-webadmin
+              containerPort: 8080
+              protocol: TCP
+            - name: 7dtd-telnet
+              containerPort: 8081
+              protocol: TCP
+            - name: 7dtd-http
+              containerPort: 8082
+              protocol: TCP
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
           volumeMounts:
@@ -81,6 +81,17 @@ spec:
             - name: backups
               mountPath: {{ .Values.persistence.backups.mountPath }}
             {{- end }}
+          readinessProbe:
+            exec:
+              command: [ "sh", "-c", "ss -tuln | grep :26900" ]
+            initialDelaySeconds: 60
+            periodSeconds: 10
+          ## Do not use a tcpSocket livenessProbe. This breaks everything for some reason...
+          #livenessProbe:
+          #  tcpSocket:
+          #    port: 7dtd-tcp
+          #  initialDelaySeconds: 10
+          #  periodSeconds: 30
       volumes:
         {{- if .Values.persistence.worldSaves.enabled }}
         - name: world-saves
