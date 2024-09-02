@@ -70,6 +70,42 @@ service:
   loadBalancerIP: ""
   loadBalancerSourceRanges: []
   type: ClusterIP
+  ports:
+    - name: 7dtd-tcp
+      enabled: true
+      port: 26900
+      protocol: TCP
+      targetPort: 7dtd-tcp
+    - name: 7dtd-udp
+      enabled: true
+      port: 26900
+      protocol: UDP
+      targetPort: 7dtd-udp
+    - name: 7dtd-udp2
+      enabled: true
+      port: 26901
+      protocol: UDP
+      targetPort: 7dtd-udp2
+    - name: 7dtd-udp3
+      enabled: true
+      port: 26902
+      protocol: UDP
+      targetPort: 7dtd-udp3
+    - name: 7dtd-webadmin
+      enabled: true
+      port: 8080
+      protocol: TCP
+      targetPort: 7dtd-webadmin
+    - name: 7dtd-telnet
+      enabled: true
+      port: 8081
+      protocol: TCP
+      targetPort: 7dtd-telnet
+    - name: 7dtd-http
+      enabled: true
+      port: 8082
+      protocol: TCP
+      targetPort: 7dtd-http
 
 ## Set the LoadBalancer service type to internal only.
 ## ref: https://kubernetes.io/docs/concepts/services-networking/service/#internal-load-balancer

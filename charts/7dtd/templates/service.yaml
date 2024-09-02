@@ -26,34 +26,14 @@ spec:
     {{- toYaml .Values.service.loadBalancerSourceRanges | nindent 4 }}
   {{- end }}
   ports:
-    - name: 7dtd-tcp
-      port: 26900
-      protocol: TCP
-      targetPort: 7dtd-tcp
-    - name: 7dtd-udp
-      port: 26900
-      protocol: UDP
-      targetPort: 7dtd-udp
-    - name: 7dtd-udp2
-      port: 26901
-      protocol: UDP
-      targetPort: 7dtd-udp2
-    - name: 7dtd-udp3
-      port: 26902
-      protocol: UDP
-      targetPort: 7dtd-udp3
-    - name: 7dtd-webadmin
-      port: 8080
-      protocol: TCP
-      targetPort: 7dtd-webadmin
-    - name: 7dtd-telnet
-      port: 8081
-      protocol: TCP
-      targetPort: 7dtd-telnet
-    - name: 7dtd-http
-      port: 8082
-      protocol: TCP
-      targetPort: 7dtd-http
+    {{- range .Values.service.ports }}
+    {{- if .enabled }}
+    - name: {{ .name }}
+      port: {{ .port }}
+      protocol: {{ .protocol }}
+      targetPort: {{ .targetPort }}
+    {{- end }}
+    {{- end }}
   selector:
     app: {{ template "7dtd.name" . }}
     release: {{ .Release.Name }}
